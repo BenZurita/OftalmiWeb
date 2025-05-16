@@ -11550,7 +11550,6 @@ pre .code {
   display: none;
 }
 
-/* === HEADER (ESTILOS COMPLETOS) === */
 .header {
   position: relative;
   height: 100vh;
@@ -11567,7 +11566,6 @@ pre .code {
   -webkit-flex-direction: column;
       -ms-flex-direction: column;
           flex-direction: column;
-  overflow: visible !important; /* MODIFICACIÓN: Evita recortes */
 }
 
 .header .overlay {
@@ -11597,38 +11595,27 @@ pre .code {
   margin-top: 100px;
 }
 
-/* === NUEVOS ESTILOS PARA EL CAPTION (MODIFICADO) === */
-.header .carousel .carousel-inner {
-  overflow: visible !important; /* MODIFICACIÓN: Permite desbordamiento */
-  position: relative !important; /* Necesario para el posicionamiento */
-}
-
-.header .carousel .carousel-caption {
-  position: absolute !important; 
-  left: -100px !important; 
-  top: 50% !important; 
-  transform: translateY(-50%) !important; 
-  width: auto !important; 
-  padding-left: 20px; 
-  z-index: 10; 
-  min-height: 650px !important; 
-  text-align: left; 
-}
-
 .header .carousel .carousel-inner .carousel-title {
   font-size: calc(40px + (60 - 40) * ((100vw - 300px) / (1300 - 300)));
   font-weight: bold;
   margin-bottom: 1.3rem;
-  display: inline-block; /* Ajusta ancho al contenido */
 }
 
-/* === ESTILOS SIN MODIFICAR === */
 .header .carousel .carousel-inner .btn {
   border-radius: 20px;
   margin: 15px 0;
   min-width: 120px;
-  overflow: visible !important;
+  overflow:visible !important;
 }
+
+.header .carousel .carousel-caption {
+  position: relative;
+  text-align: left;
+  display: block;
+  min-height: 600px;
+  left: 0;
+}
+
 
 .header-title {
   font-size: 2.4rem;
@@ -11669,15 +11656,7 @@ pre .code {
   }
   .header .carousel {
     margin-top: 100px;
-  }
-  /* Ajuste opcional para móviles */
-  .header .carousel .carousel-caption {
-    padding-left: 10px !important;
-  }
-  .carousel-title {
-    white-space: normal; /* Permite saltos en móviles */
-  }
-}
+  }}
   .infos {
     margin-top: 40px;
     -webkit-box-orient: vertical;
