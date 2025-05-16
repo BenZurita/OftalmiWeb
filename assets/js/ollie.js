@@ -62,3 +62,28 @@ $('#owl-testmonial').owlCarousel({
     nav: true,
     dots: false
 })
+document.addEventListener('DOMContentLoaded', function() {
+    const words = [
+        "tecnología",
+        "innovación",
+        "<span style='text-transform: uppercase;'>D</span>OSIS de vida"
+    ];
+    const changingWord = document.querySelector('.changing-word');
+    let currentIndex = 0;
+
+    function changeWord() {
+        changingWord.style.opacity = 0;
+        
+        setTimeout(() => {
+            currentIndex = (currentIndex + 1) % words.length;
+            changingWord.innerHTML = words[currentIndex];
+            changingWord.style.opacity = 1;
+        }, 500);
+    }
+
+    // Iniciar el cambio cada 3 segundos
+    setInterval(changeWord, 3000);
+    
+    // Forzar mayúscula solo en la D de DOSIS
+    changingWord.innerHTML = words[0]; // Inicia con "tecnología"
+});

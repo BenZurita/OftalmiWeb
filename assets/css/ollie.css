@@ -11327,7 +11327,7 @@ p {
 }
 
 .navbar.affix.bg-light {
-  background: #190E4F !important;
+  background: #010687 !important;
 }
 
 .navbar.affix.bg-dark {
@@ -11355,8 +11355,8 @@ p {
 }
 
 .navbar-brand .brand-img {
-  width: 175px;
-  margin: -0.3125rem 0;
+  width: 120px;
+  margin: -120px;
 }
 
 .navbar-toggler {
@@ -11416,8 +11416,8 @@ p {
 }
 
 .navbar-toggler-icon:after {
-  top: 10px;
-  width: 30px;
+  top: 30px;
+  width: 10px;
 }
 
 .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
@@ -11550,13 +11550,14 @@ pre .code {
   display: none;
 }
 
+/* === HEADER (ESTILOS COMPLETOS) === */
 .header {
   position: relative;
   height: 100vh;
   min-height: 600px;
-  background-image: url(../imgs/1.jpg);
-  background-size: cover;
-  background-position: center;
+  background-image: url(../imgs/fondo-prueba-2.jpg);
+  background-size: cover; 
+  background-position: center center; 
   display: -webkit-box;
   display: -ms-flexbox;
   display: -webkit-flex;
@@ -11566,6 +11567,7 @@ pre .code {
   -webkit-flex-direction: column;
       -ms-flex-direction: column;
           flex-direction: column;
+  overflow: visible !important; /* MODIFICACIÓN: Evita recortes */
 }
 
 .header .overlay {
@@ -11574,8 +11576,6 @@ pre .code {
   left: 0;
   width: 100%;
   height: 100%;
-  background: #2C3E50;
-  opacity: .9;
 }
 
 .header .carousel {
@@ -11597,22 +11597,37 @@ pre .code {
   margin-top: 100px;
 }
 
+/* === NUEVOS ESTILOS PARA EL CAPTION (MODIFICADO) === */
+.header .carousel .carousel-inner {
+  overflow: visible !important; /* MODIFICACIÓN: Permite desbordamiento */
+  position: relative !important; /* Necesario para el posicionamiento */
+}
+
+.header .carousel .carousel-caption {
+  position: absolute !important; 
+  left: -100px !important; 
+  top: 50% !important; 
+  transform: translateY(-50%) !important; 
+  width: auto !important; 
+  padding-left: 20px; 
+  z-index: 10; 
+  min-height: 650px !important; 
+  text-align: left; 
+}
+
 .header .carousel .carousel-inner .carousel-title {
   font-size: calc(40px + (60 - 40) * ((100vw - 300px) / (1300 - 300)));
   font-weight: bold;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.3rem;
+  display: inline-block; /* Ajusta ancho al contenido */
 }
 
+/* === ESTILOS SIN MODIFICAR === */
 .header .carousel .carousel-inner .btn {
   border-radius: 20px;
   margin: 15px 0;
   min-width: 120px;
-}
-
-.header .carousel .carousel-caption {
-  position: static;
-  text-align: left;
-  display: block !important;
+  overflow: visible !important;
 }
 
 .header-title {
@@ -11655,6 +11670,14 @@ pre .code {
   .header .carousel {
     margin-top: 100px;
   }
+  /* Ajuste opcional para móviles */
+  .header .carousel .carousel-caption {
+    padding-left: 10px !important;
+  }
+  .carousel-title {
+    white-space: normal; /* Permite saltos en móviles */
+  }
+}
   .infos {
     margin-top: 40px;
     -webkit-box-orient: vertical;
@@ -11672,7 +11695,6 @@ pre .code {
   .infos .socials {
     margin-top: 20px;
   }
-}
 
 @media (max-width: 767.98px) {
   .header .carousel-control-prev,
@@ -11698,49 +11720,80 @@ pre .code {
 }
 
 .section.bg-overlay {
-  background: #190E4F;
+  background-image: url(../imgs/cintillo-2.jpg);
+  background-size: cover;
   color: #fff;
 }
 /* Contenedor principal del grid */
 .portfolio-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 columnas de igual ancho */
-  gap: 30px; /* Espacio entre items */
-  padding: 20px 0; /* Espacio vertical */
-  margin: 0 auto; /* Centrado horizontal */
-  max-width: 1200px; /* Ancho máximo del grid */
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  padding: 20px 0;
+  margin: 0 auto;
+  max-width: 1200px;
+  position: relative;
+  z-index: 2; /* Asegura que el contenido esté sobre los fondos */
 }
 
-/* Cada item del portfolio */
+/* Cada item del portfolio - Modificado para el efecto de acuarela */
 .portfolio-item {
-  background: #fff; /* Fondo blanco */
-  border-radius: 10px; /* Bordes redondeados */
-  overflow: hidden; /* Para que las esquinas redondeadas apliquen a la imagen */
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  background: #fff;
+  border-radius: 10px;
+  overflow: visible; /* Cambiado para permitir que el fondo se extienda */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative; /* Necesario para posicionar el pseudo-elemento */
 }
 
-/* Efecto hover para los items */
+/* Elemento de fondo acuarela */
+.portfolio-item::after {
+  content: "";
+  position: absolute;
+  width: 150%;
+  height: 150%;
+  background: url('../imgs/13.png') no-repeat;
+  background-size: contain;
+  background-position: center;
+  opacity: 0.05;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(15deg);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  pointer-events: none; /* Permite interactuar con el item */
+}
+
+/* Efecto hover - item levita y acuarela se hace más visible */
 .portfolio-item:hover {
-  transform: translateY(-5px); /* Levanta el item */
+  transform: translateY(-15px);
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
 
-/* Estilo para las imágenes */
-.portfolio-img {
-  width: 100%; /* Ocupa todo el ancho del contenedor */
-  height: 200px; /* Altura fija (ajusta según necesidad) */
-  object-fit: cover; /* Asegura que la imagen cubra el espacio sin deformarse */
-  display: block; /* Elimina espacio fantasma debajo de la imagen */
+.portfolio-item:hover::after {
+  opacity: 0.1;
+  transform: translate(-50%, -50%) rotate(20deg) scale(1.05);
 }
 
-/* Contenedor del texto */
+/* Estilo para las imágenes (sin cambios) */
+.portfolio-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+  border-radius: 10px 10px 0 0; /* Redondea solo esquinas superiores */
+}
+
+/* Contenedor del texto (mejorado para contrastar con el fondo) */
 .portfolio-text {
   padding: 20px;
-  text-align: left; /* Texto centrado */
+  text-align: left;
+  background: #fff; /* Fondo sólido para mejor legibilidad */
+  border-radius: 0 0 10px 10px; /* Redondea solo esquinas inferiores */
+  position: relative; /* Asegura que esté sobre el fondo */
 }
 
-/* Estilos para el título y descripción */
+/* Estilos para el título y descripción (sin cambios) */
 .portfolio-title {
   margin-bottom: 10px;
   color: #333;
@@ -11753,19 +11806,155 @@ pre .code {
   line-height: 1.5;
 }
 
-/* Responsive: 2 columnas en tablets */
+/* Responsive (con ajuste para el efecto de fondo) */
 @media (max-width: 992px) {
   .portfolio-grid {
-      grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .portfolio-item::after {
+    width: 130%;
+    height: 130%;
   }
 }
 
-/* Responsive: 1 columna en móviles */
 @media (max-width: 768px) {
   .portfolio-grid {
-      grid-template-columns: 1fr;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .portfolio-item::after {
+    width: 120%;
+    height: 120%;
+    opacity: 0.07; /* Un poco más visible en móviles */
   }
 }
+
+/* Contenedor principal del grid */
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  padding: 20px 0;
+  margin: 0 auto;
+  max-width: 1200px;
+  position: relative;
+  z-index: 2; /* Asegura que el contenido esté sobre los fondos */
+}
+
+/* Cada item del portfolio - Modificado para el efecto de acuarela */
+.portfolio-item {
+  background: #fff;
+  border-radius: 10px;
+  overflow: visible;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+}
+
+/* Elemento de fondo acuarela */
+.portfolio-item::after {
+  content: "";
+  position: absolute;
+  width: 150%;
+  height: 150%;
+  background: url('../imgs/13.png') no-repeat;
+  background-size: contain;
+  background-position: center;
+  opacity: 0.05;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(15deg);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  pointer-events: none;
+}
+
+/* Efecto hover */
+.portfolio-item:hover {
+  transform: translateY(-15px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.portfolio-item:hover::after {
+  opacity: 0.1;
+  transform: translate(-50%, -50%) rotate(20deg) scale(1.05);
+}
+
+/* Estilo para las imágenes */
+.portfolio-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+  border-radius: 10px 10px 0 0;
+}
+
+/* Contenedor del texto */
+.portfolio-text {
+  padding: 20px;
+  text-align: left;
+  background: #fff;
+  border-radius: 0 0 10px 10px;
+  position: relative;
+}
+
+/* Título y descripción */
+.portfolio-title {
+  margin-bottom: 10px;
+  color: #333;
+  font-size: 1.1rem;
+}
+
+.portfolio-description {
+  color: #666;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .portfolio-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .portfolio-item::after {
+    width: 130%;
+    height: 130%;
+  }
+}
+
+@media (max-width: 768px) {
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .portfolio-item::after {
+    width: 120%;
+    height: 120%;
+    opacity: 0.07;
+  }
+}
+
+/* Imagen decorativa flotante */
+.decorative-shape {
+  position: absolute;
+  top: -30px;
+  right: -30px;
+  width: 120px;
+  opacity: 0.08;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Posicionamiento relativo para contener la imagen decorativa */
+#product-lines {
+  position: relative;
+  overflow: hidden;
+}
+
 
 /* Contenedor de imágenes (igual que antes) */
 .allies-images {
@@ -11778,7 +11967,7 @@ pre .code {
 
 /* Estilo para imágenes (igual que antes) */
 .ally-img {
-  max-width: 160px;
+  max-width: 250px;
   height: auto;
   object-fit: contain;
   transition: transform 0.3s ease;
@@ -11787,7 +11976,7 @@ pre .code {
 }
 
 .ally-img:hover {
-  transform: scale(1.05);
+  transform: scale(1.30);
 }
 
 /* Ajuste para la clase original 'infos' */
@@ -11820,4 +12009,31 @@ pre .code {
   .ally-img {
       max-width: 100px;
   }
+}
+.carousel-title {
+    /* Mantiene tus estilos originales */
+    text-transform: none; /* Elimina mayúsculas forzadas */
+}
+
+.constant-word {
+    display: block;
+    font-size: 1.2em; /* Puedes ajustar esto */
+}
+
+.changing-word {
+    display: block;
+    font-size: 1.3em; /* Más grande que "Somos" */
+    position: relative;
+    margin-top: -85px;
+}
+
+/* Estilo para capitalizar solo primera letra */
+.changing-word::first-letter {
+    text-transform: uppercase;
+}
+
+/* Efecto de transición */
+.changing-word {
+    opacity: 1;
+    transition: opacity 0.8s ease-in-out;
 }
